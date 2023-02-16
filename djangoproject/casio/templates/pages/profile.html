@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+        <!-- main -->
+        <div class="w-full md:w-4/5 h-full relative">
+            <!-- mobile header -->
+            <div
+                class="h-14 sticky top-0 left-0 shadow-md bg-brand w-full px-3 flex md:hidden items-center justify-between">
+                <img src="{% static 'img/casio.svg' %}" alt="" class="w-40" srcset="">
+                <div class="flex items-center gap-4">
+                    <img src="{% static 'img/notification.png' %}" class="w-8 h-8" alt="" srcset="">
+                    <img src="{% static 'img/hambergermenu.png' %}" class="w-8 h-8" alt="" srcset="">
+                </div>
+            </div>
+            <!-- end mobile header -->
+            <div class="flex w-full items-center justify-between px-3 md:px-5 my-3 md:my-6">
+                <h2 class="text-lg md:text-xl font-semibold ">My Profile</h2>
+                <a href="#">
+                    <img src="{% static 'img/notification-o.png' %}" class="hidden md:flex w-8 h-8" alt="bell" srcset="">
+                </a>
+            </div>
+            
+            <div class="p-3 md:p-5 flex items-center mb-4 ">
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="profile" class="w-16 h-16" srcset="">
+                <div class="px-3">
+                    <h4 class="font-semibold text-lg mb-1">{{userprof.fullname}}</h4>
+                    <p class="text-sm text-gray-500">Nigeria</p>
+                </div>
+            </div>
+            <!--  -->
+            <div style="background-color: #DDFFD1;" class="grid grid-cols-2 rounded shadow-sm p-3 m-3 md:m-5 max-width-400 ">
+                <p class="text-sm">Personal Information</p>
+                <p class="text-sm text-brand text-right">Edit</p>
+                <p class="text-sm mt-5">Full Name</p>
+                <p class="text-sm mt-5 text-right">{{userprof.fullname}}</p>
+                <p class="text-sm mt-2">Email</p>
+                <p class="text-sm mt-2 text-right">{{userprof.email}}</p>
+                <p class="text-sm mt-2">Phone</p>
+                <p class="text-sm mt-2 text-right">{{userprof.phone}}</p>
+                <p class="text-sm mt-2">Country</p>
+                <p class="text-sm mt-2 text-right">Nigeria</p>
+                <p class="text-sm mt-2">City</p>
+                <p class="text-sm mt-2 text-right">Lagos</p>
+            </div>
+            <div style="background-color: #DDFFD1;" class="grid grid-cols-2 rounded shadow-sm p-3 m-3 md:m-5 max-width-400 ">
+                <p class="text-sm">Withdrawal Information</p>
+                <p class="text-sm text-brand text-right">Edit</p>
+                <p class="text-sm mt-5">Wallet Amount</p>
+                <p class="text-sm mt-5 text-right">$20</p>
+                <p class="text-sm mt-2">WithDRawal PIN</p>
+                <p class="text-sm mt-2 text-right">1234</p>
+            </div>
+        </div>
+        {% endblock content %}

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+        <div class="w-full md:w-4/5 h-full relative">
+            <!-- mobile header -->
+            <div
+                class="h-14 sticky top-0 left-0 shadow-md bg-brand w-full px-3 flex md:hidden items-center justify-between">
+                <img src="{% static 'img/casio.svg' %}" alt="" class="w-40" srcset="">
+                <div class="flex items-center gap-4">
+                    <img src="{% static 'img/notification.png' %}" class="w-8 h-8" alt="" srcset="">
+                    <img src="{% static 'img/hambergermenu.png' %}" class="w-8 h-8" alt="" srcset="">
+                </div>
+            </div>
+            <!-- end mobile header -->
+                <div class="flex w-full items-center justify-between px-3 md:px-5 my-3 md:my-6">
+                    <h2 class="text-lg md:text-xl font-semibold ">All Bets</h2>
+                    <a href="{% url 'fund' %}" class="text-sm cursor-pointer text-gray-500 font-semibold">Fund Wallet</a>
+                </div>
+                <div class="px-3 md:px-5  flex items-center mt-10 justify-between">
+                    <h2 class="font-medium text-sm text-gray-700">Monday, 12 February 2023</h2>
+                    <a class="text-brand text-sm font-medium" href="#">View All</a>
+                </div>
+                <div class="px-3 md:px-5 mt-3">
+                    <div class="flex flex-col md:flex-row gap-4 ">
+                        <img src="{% static 'img/Frame.svg' %}" class="w-full md:w-1/4" alt="">
+                        <img src="{% static 'img/Frame.svg' %}" class="w-full md:w-1/4" alt="">
+                        <img src="{% static 'img/Frame.svg' %}" class="w-full md:w-1/4" alt="">
+                        <img src="{% static 'img/Frame.svg' %}" class="w-full md:w-1/4" alt="">
+                    </div>
+                </div>
+                <!-- next draw -->
+                <div class="px-3 md:px-5  flex items-center mt-10 justify-between">
+                    <h2 class="font-medium text-sm text-gray-700">Saturday, 9th February 2023</h2>
+                    <a class="text-brand text-sm font-medium" href="#">View All</a>
+                </div>
+                <div class="px-3 md:px-5 mt-3">
+                    <div class="flex flex-col md:flex-row gap-4 ">
+                        <img src="{% static 'img/Frame.svg' %}" class="w-full md:w-1/4" alt="">
+                        <img src="{% static 'img/Frame.svg' %}" class="w-full md:w-1/4" alt="">
+                        <img src="{% static 'img/Frame.svg' %}" class="w-full md:w-1/4" alt="">
+                        <img src="{% static 'img/Frame.svg' %}" class="w-full md:w-1/4" alt="">
+                    </div>
+                </div>
+                <!-- next draw -->
+                <div class="px-3 md:px-5  flex items-center mt-10 justify-between">
+                    <h2 class="font-medium text-sm text-gray-700">Friday, 8th February 2023</h2>
+                    <a class="text-brand text-sm font-medium" href="#">View All</a>
+                </div>
+                <div class="px-3 md:px-5 mt-3">
+                    <div class="flex flex-col md:flex-row gap-4 ">
+                        <img src="{% static 'img/Frame.svg' %}" class="w-full md:w-1/4" alt="">
+                        <img src="{% static 'img/Frame.svg' %}" class="w-full md:w-1/4" alt="">
+                        <img src="{% static 'img/Frame.svg' %}" class="w-full md:w-1/4" alt="">
+                        <img src="{% static 'img/Frame.svg' %}" class="w-full md:w-1/4" alt="">
+
+                    </div>
+                </div>
+        </div>
+        {% endblock content %}
