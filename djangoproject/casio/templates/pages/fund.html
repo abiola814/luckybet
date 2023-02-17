@@ -41,7 +41,7 @@
             <div class="flex md:hidden w-full items-center justify-between px-3 md:px-5 my-3 md:my-6">
                 <h2 class="text-lg md:text-xl font-semibold "></h2>
                     <div class="flex md:hidden items-center gap-2">
-                        <a href="./uncoming-draw.html" class="text-sm cursor-pointer text-gray-500 font-semibold">All Bets</a>
+                        <a href="{% url 'draw' %}" class="text-sm cursor-pointer text-gray-500 font-semibold">All Bets</a>
                         <a href="#" class="text-sm cursor-pointer text-brand font-semibold">Fund Wallet</a>
                     </div>
             </div>
@@ -51,21 +51,21 @@
             <p class="px-3 md:px-5 mt-6 text-sm">Select a payment method</p>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:w-1/2 w-full px-3 md:px-5 mt-2">
-                <div class="flex flex-col justify-between w-full p-3 rounded-md border h-28">
+                <div id="transfer"class="flex flex-col justify-between w-full p-3 rounded-md border h-28 " >
                     <h4 class="text-sm">Bank Transfer</h4>
                     <div class="flex items-center justify-between">
                         <p class="text-xs text-gray-500">4%</p>
                         <img src="{% static 'img/angle.png' %}" class="w-4 h-4" alt="" srcset="">
                     </div>
                 </div>
-                <div class="flex flex-col justify-between w-full p-3 rounded-md border h-28">
+                <div id="ussd" class="flex flex-col justify-between w-full p-3 rounded-md border h-28">
                     <h4 class="text-sm">USSD</h4>
                     <div class="flex items-center justify-between">
                         <p class="text-xs text-gray-500">4%</p>
                         <img src="{% static 'img/angle.png' %}" class="w-4 h-4" alt="" srcset="">
                     </div>
                 </div>
-                <div class="flex flex-col justify-between w-full p-3 rounded-md border h-28">
+                <div id="crypto" class="flex flex-col justify-between w-full p-3 rounded-md border h-28">
                     <h4 class="text-sm">Crypto</h4>
                     <div class="flex items-center justify-between">
                         <p class="text-xs text-gray-500">4%</p>
@@ -73,15 +73,18 @@
                     </div>
                 </div>
             </div>
+            <form method="post" action="{% url 'payment:process_payment' %}">
+                {% csrf_token %}
            <p class="text-gray-700 text-xs px-3 md:px-5 my-3 md:my-4">Payment processed by flutterwave</p>
            <p class="text-black font-semibold text-xs px-3 md:px-5 my-3 md:my-6">Amount</p>
            <div class="flex items-center gap-5 px-3 md:px-5">
-            <input value="15050" class="border bg-gray-50 px-3 py-2 rounded-md w-20">
+            <input id="dollar" name="amount" value="11" class="border bg-gray-50 px-3 py-2 rounded-md w-20" oninput="myFunction(this.value)">
             <div>
-                <p class="text-xs text-gray-500 font-normal">Amount to be credited: <span class='text-black font-semibold'>15,000NGN</span></p>
-                <p class="text-xs text-gray-500 font-normal">Service Fee:<span class='text-black font-semibold'>50NGN</span></p>
+                <p  class="text-xs text-gray-500 font-normal">Amount to be credited: <span id="credited"class='text-black font-semibold'>$10</span></p>
+                <p class="text-xs text-gray-500 font-normal">Service Fee:<span  id="servicefee" class='text-black font-semibold'>$1</span></p>
             </div>
            </div>
+           <input id="lop" type=hidden name="method">
            <!--  -->
            <div class=" text-xs flex px-3 md:px-5 mt-10 items-center gap-3">
             <img src="{% static 'img/tickcircle.png' %}" class="w-6 h-6" alt="" srcset="">
@@ -92,10 +95,65 @@
             <p>I agree with storage of credentials for next payment</p>
            </div>
 
-           <button class="mx-3 md:mx-5 bg-brand px-4 py-2 rounded-full mt-4 md:mt-8 text-white text-xs">Checkout and pay</button>
+           <button type="submit" id="submitbutton"class="mx-3 md:mx-5 bg-brand px-4 py-2 rounded-full mt-4 md:mt-8 text-white text-xs">Checkout and pay</button>
+        </form>
         </div>
         <!-- end of main  -->
     </div>
+    <script>
+        
+        document.getElementById("transfer").addEventListener("click", (e)=>{
+            e.preventDefault();
+            console.log("tradddddddddddddddd")
+            document.getElementById("transfer").classList.add("bg-gray-200");
+            document.getElementById("crypto").classList.remove("bg-gray-200");
+            document.getElementById("ussd").classList.remove("bg-gray-200");
+            document.getElementById("method").textField.value="transfer";
+
+        })
+        document.getElementById("crypto").addEventListener("click", (e)=>{
+            e.preventDefault();
+            document.getElementById("crypto").classList.add("bg-gray-200");
+            document.getElementById("transfer").classList.remove("bg-gray-200");
+            document.getElementById("ussd").classList.remove("bg-gray-200");
+              document.getElementById("method").textField.value= "crypto";
+
+        })
+        document.getElementById("ussd").addEventListener("click", (e)=>{
+            e.preventDefault();
+            document.getElementById("ussd").classList.add("bg-gray-200");
+            document.getElementById("transfer").classList.remove("bg-gray-200");
+            document.getElementById("crypto").classList.remove("bg-gray-200");
+              document.getElementById("method").textField.value= "ussd";
+
+        })
+        {% comment %} document.getElementById("submitbutton").addEventListener("click", (e)=>{
+            e.preventDefault();
+            let data = new FormData(); // 2
+    
+                data.append("amount", document.getElementById('dollar').value)  
+               // data.append("password", document.getElementById('password').value)
+                data.append("method", document.getElementById(method).textField.value=)
+                data.append("csrfmiddlewaretoken", '{{csrf_token}}')
+                axios.post("{% url 'payment:initiate-payment' %}",data)
+                .then((response) => {
+                    console.log("gook")
+                }
+                ), (error) => {
+                    console.log(error);
+                  };
+        }) {% endcomment %}
+    </script>
+    <script>
+        function myFunction(value) {
+            let servicefee = Number(value)*0.02
+            let credited = value - servicefee
+          document.getElementById("servicefee").innerHTML = servicefee; 
+          document.getElementById("credited").innerHTML = credited; 
+
+        }
+        </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </body>
 
 </html>

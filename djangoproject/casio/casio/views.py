@@ -51,9 +51,7 @@ def profile(request):
     
     return render(request,"pages/profile.html",{"userprof":userprof})
 
-@login_required
-def fund(request):
-    return render(request,"pages/fund.html")
+
     
 def logout_view(request):
     logout(request)

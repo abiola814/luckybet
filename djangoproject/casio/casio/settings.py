@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bet'
+    'bet',
+    'payment'
 ]
 
 MIDDLEWARE = [
@@ -121,6 +122,9 @@ LOGIN_URL ="/login"
 STATIC_URL = 'static/'
 STATICFILES_DIRS=[ os.path.join(BASE_DIR,'static') ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+PAYSTACK_SECRET_KEY = "sk_test_2a2fa7c4fccbd021b463bfc181682d39983ba29b"
+PAYSTACK_PUBLIC_KEY = "pk_test_389662aa6980de832a1a44901230646053078d75"
 
 
 # Default primary key field type
