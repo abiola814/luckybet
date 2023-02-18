@@ -32,20 +32,20 @@ class winners(models.Model):
     #     return reverse("_detail", kwargs={"pk": self.pk})
 
 class Allbet(models.Model):
-    number1= models.IntegerField(max_length=2)
-    number2= models.IntegerField(max_length=2)
-    number3= models.IntegerField(max_length=2)
-    number4= models.IntegerField(max_length=2)
-    number5= models.IntegerField(max_length=2)
-    totalpot=  models.IntegerField(max_length=100)
-    winning_one= models.IntegerField(max_length=2)
-    winning_two= models.IntegerField(max_length=2)
-    date = models.DateField( auto_now=False, auto_now_add=False)
-    time=models.TimeField( auto_now=False, auto_now_add=False)
+    number1= models.IntegerField()
+    number2= models.IntegerField()
+    number3= models.IntegerField()
+    number4= models.IntegerField()
+    number5= models.IntegerField()
+    totalpot=  models.IntegerField(default=0)
+    winning_one= models.IntegerField()
+    winning_two= models.IntegerField()
+    date = models.DateField( auto_now=True)
+    time=models.TimeField( auto_now=True)
     closed = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.date
+        return f"{self.winning_one} {self.winning_two}"
 
 
 

@@ -26,5 +26,7 @@ urlpatterns = [
     path("profile/",views.profile,name="profile"),
      path("draw/",views.draw,name="draw"),
        path("logout/",views.logout_view,name="logout"),
-       path("fund/",include('payment.urls'))
+       path("fund/",include('payment.urls')),
+        path("bet/",include('bet.urls'))
+
 ]
