@@ -73,7 +73,7 @@
                     </div>
                 </div>
             </div>
-            <form method="post" action="{% url 'payment:process_payment' %}">
+            <form method="post" action="{% url 'payment:initiate-payment' %}">
                 {% csrf_token %}
            <p class="text-gray-700 text-xs px-3 md:px-5 my-3 md:my-4">Payment processed by flutterwave</p>
            <p class="text-black font-semibold text-xs px-3 md:px-5 my-3 md:my-6">Amount</p>

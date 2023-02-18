@@ -26,19 +26,10 @@ import random
 
 #     return render(request, "connector.html")
 
-#@login_required
-# def initiate_payment(request):
-#     if request.method == "POST":
-#         amount= request.POST.get('amount')
-#         typ= request.POST.get('method')
-
-#         email = request.user.username
-#         userprof= UserProfile.objects.get(email = email)
-#         pay = Payment.objects.create(userprof=userprof,email=email,amount=amount,method=typ)
-#         # pays = Payment.objects.get(ref=pay.ref)
-    
-#         return render(request,"pages/confirmpay.html",{'payment': pay, 'paystack_public_key': settings.PAYSTACK_PUBLIC_KEY})
-#     return render(request,"pages/fund.html")
+@login_required
+def initiate_payment(request):
+ 
+    return render(request,"pages/fund.html")
 
 def verify_payment(request, ref: str):
     trxref = request.GET["trxref"]

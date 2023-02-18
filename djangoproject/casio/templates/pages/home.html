@@ -55,10 +55,39 @@
             <!-- draws -->
             <div class="px-3 md:px-5 mt-4 md:mt-10">
                 <h2 class="font-semibold text-lg md:text-xl mb-3">Latest Draws</h2>
-                <div class="flex flex-col md:flex-row gap-4 ">
-                    <img src="{% static 'img/Frame.svg' %}" class="w-full md:w-1/4" alt="">
-                    <img src="{% static 'img/Frame.svg' %}" class="w-full md:w-1/4" alt="">
-                    <img src="{% static 'img/Frame.svg' %}" class="w-full md:w-1/4" alt="">
+                <div class="px-3 md:px-5 mt-3">
+                    <div class="flex flex-col md:flex-row gap-4 "
+                    >        {% for data in today.today %}
+                        <div class="w-full md:w-1/3 h-44 cardbg">
+                            <div class="flex h-1/2 p-3 gap-4">
+                                <img class="h-full" src="{% static 'img/poke2.svg' %}" alt="" srcset="">
+                                <div class="h-full flex flex-col justify-center">
+                                    <h5 class="text-xs font-semibold mb-1">Minute Lottery Ticket</h5>
+                                    <p style="font-size: 10px;" class=" text-gray-500">Draw took place on</p>
+                                    <p style="font-size: 10px;" class="">{{ today.todayname }}, {{today.day}} {{today.month}} {{today.year}} </p>
+                                </div>
+                            </div>
+                            <hr class="mx-4 border-gray-300">
+                            <div class="h-1/2  flex flew-row items-center px-4 divide-x">
+                                <div class="w-3/5">
+                                    <p class="text-sm mb-2">Winning Numbers</p>
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-6 h-6 p10 rounded-full flex items-center justify-center text-white font-semibold bg-brand">{{data.number1}}</div>
+                                        <div class="w-6 h-6 p10 rounded-full flex items-center justify-center text-white font-semibold bg-brand">{{data.number2}}</div>
+                                        <div class="w-6 h-6 p10 rounded-full flex items-center justify-center text-white font-semibold bg-brand">{{data.number3}}</div>
+                                        <div class="w-6 h-6 p10 rounded-full flex items-center justify-center text-white font-semibold bg-brand">{{data.number4}}</div>
+                                        <div class="w-6 h-6 p10 rounded-full flex items-center justify-center text-white font-semibold bg-brand">{{data.number5}}</div>
+                                    </div>
+                                </div>
+                                <div class="w-2/5 px-3">
+                                    <p class="text-xs text-gray-400 mb-2">Jack Post</p>
+                                    <p class="text-brand font-semibold text-2xl">${{data.totalpot}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+             
+                    </div>
                 </div>
             </div>
             <!-- end draws -->
