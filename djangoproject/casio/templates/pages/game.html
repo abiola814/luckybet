@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+            <!-- end mobile header -->
+            <div class="h-14 sticky top-0 left-0 shadow-md bg-brand w-full px-3 hidden md:flex items-center justify-between">
+                <a href="{% url 'notice' %}" class="text-sm cursor-pointer text-white font-semibold">All
+                    Bets</a>
+            
+                <div class="flex items-center gap-4 px-2">
+                    <img src="{% static  'img/casio.svg' %}" alt="" class="w-40" srcset="">
+                    <a href="{% url 'notice' %}">
+                        <img src="{% static  'img/notification.png' %}" class="w-8 h-8" alt="bell" srcset="">
+                    </a>
+                </div>
+            </div>
+
+            <main class="px-3 md:px-5">
+                <form method="post" action="{% url 'game' %}">
+                    {% csrf_token %}
+                <p class="text-center text-gray-600 mt-5 md:mt-10 text-sm">02:00 PM</p>
+                <div class="flex bg-white mt-4 flex-col items-center rounded-md shadow-md p-3 md:p-5 w-full mx-4 md:w-3/5 md:mx-auto">
+                    <p class="text-center text-gray-600">Selected Numbers</p>
+                    <h1 class="my-3 md:my-5 text-lg md:text-2xl font-semibold">{{bet.number1}}, {{bet.number2}}, {{bet.number3}}, {{bet.number4}}, {{bet.number5}}</h1>
+                    <p class="text-center text-gray-600">Numbers Of Draws</p>
+                    <div class="flex flex-row items-center justify-between gap-3 my-4">
+                        <div id="one" class="bg-brand w-8 h-8 rounded-full  flex items-center justify-center text-sm text-white">1</div>
+                        <div id="two" class="bg-brand w-8 h-8 rounded-full flex items-center justify-center text-sm text-white">2</div>
+                        <div id="three" class="bg-brand w-8 h-8 rounded-full flex items-center justify-center text-sm text-white">3</div>
+                    </div>
+                    <p class="text-center text-gray-600"> enter amount</p>
+                    <input id="dollar" name="amount" value="0" class="border bg-gray-50 px-3 py-2 rounded-md w-20" oninput="myFunction(this.value)">
+                    <input name="betid" value={{bet.id}} type='hidden'>
+                    <input name="total" type="hidden" id="total" value>
+                    <input name="method" type="hidden" id="method" value>
+                </div>
+                <div class="flex bg-white mt-4 flex-col items-center rounded-md shadow-md p-3 md:p-5 w-full mx-4 md:w-3/5 md:mx-auto">
+                    <p class="text-center font-semibold mt-1 mb-3 text-xl">Total: $<span id="servicefee"class="text-brand">0</span></p>
+                    <button type="submit" id="submitbutton" class="w-48 bg-brand py-2 rounded-full text-sm text-white mb-3">Payment Now</button>
+                </div>
+            </form>
+            </main>
+
+
+
+        </div>
+        <!-- end of main  -->
+        {% endblock content %}
+        {% block fundscript %}
+ 
+        <script>
+            var method =1 
+            document.getElementById("one").addEventListener("click", (e)=>{
+                e.preventDefault();
+                console.log("tradddddddddddddddd")
+                document.getElementById("one").classList.add("text-red-800");
+                document.getElementById("two").classList.remove("text-red-800");
+                document.getElementById("three").classList.remove("text-red-800");
+                //document.getElementById("method").textField.value="one";
+                method=1
+                document.getElementById("method").value = method; 
+            })
+            document.getElementById("two").addEventListener("click", (e)=>{
+                e.preventDefault();
+                document.getElementById("two").classList.add("text-red-800");
+                document.getElementById("one").classList.remove("text-red-800");
+                document.getElementById("three").classList.remove("text-red-800");
+           //       document.getElementById("method").textField.value= "two";
+     
+           method=2
+           document.getElementById("method").value = method; 
+            })
+            document.getElementById("three").addEventListener("click", (e)=>{
+                e.preventDefault();
+                document.getElementById("three").classList.add("text-red-800");
+                document.getElementById("one").classList.remove("text-red-800");
+                document.getElementById("two").classList.remove("text-red-800");
+             //     document.getElementById("method").textField.value= "three";
+             method=3
+             document.getElementById("method").value = method; 
+            })
+            function myFunction(value) {
+                console.log(value)
+                let servicefee = Number(value)*method
+                console.log(servicefee)
+              document.getElementById("servicefee").innerHTML = servicefee; 
+              document.getElementById("total").value = servicefee; 
+    
+            }
+            {% comment %} document.getElementById("submitbutton").addEventListener("click", (e)=>{
+                e.preventDefault();
+                let data = new FormData(); // 2
+        
+                    data.append("amount", document.getElementById('dollar').value)  
+                    data.append("betid", {{bet.id}})  
+                   data.append("total", document.getElementById('servicefee').innerHTML)
+                 data.append("method", method)
+                    data.append("csrfmiddlewaretoken", '{{csrf_token}}')
+                    axios.post("{% url 'play' %}",data)
+                    .then((response) => {
+                        if (response.data.status=="success"){
+                            location.href = response.data.link;
+                        }
+                        else{
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'sorry...',
+                                text: response.data.status
+                        })
+                        }
+                    }
+                    ), (error) => {
+                        console.log(error);
+                      };
+            }) {% endcomment %}
+            </script>
+            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+         
+            {% endblock fundscript %}

@@ -8,6 +8,11 @@ class UserProfile(models.Model):
     fullname = models.CharField(max_length=100)
     phone = models.CharField(max_length=25 )
     email = models.EmailField(unique=True)
+    country = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    withdraw_pin = models.CharField(max_length=100)
+    amount = models.IntegerField(default=0)
+    totalwin = models.IntegerField(default=0)
 
     def __str__(self):
         return f"{self.fullname}"
@@ -16,9 +21,10 @@ class UserProfile(models.Model):
 class winners(models.Model):
     bet = models.CharField(max_length=10)
     user = models.ForeignKey(UserProfile,on_delete=models.CASCADE)
-    win = models.BooleanField()
-    number = models.CharField(max_length=10)
-
+    win = models.BooleanField(default=False)
+    number = models.IntegerField(default=0)
+    numbe2 = models.IntegerField(default=0)
+    numbe3 = models.IntegerField(default=0)
     
 
     # class Meta:

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+        {% block content %}
+    <h3 class="text-black mb-2 font-semibold text-lg md:text-2xl text-center mt-3">Edit Profile</h3>
+    <form id='editform'class="bg-white shadow-md rounded-md p-3 w-full mx-5 md:w-2/4 md:mx-auto max-width-400" method='post'>
+            <label class="text-xs" for="fullname">Full Name</label>
+            <div class="bg-white h-10 flex items-center px-3 rounded-md  border mb-3 max-width-400">
+                <i class="fa-regular fa-user text-gray-500"></i>
+                <input id="fullname" name="fullname" required placeholder="John Doe" value={{userprof.fullname}} class="h-full px-2 text-sm flex-1">
+            </div>
+     
+            <!-- Phone Number -->
+            <label class="text-xs" for="phone">Phone Number</label>
+            <div class="bg-white h-10 flex items-center px-3 rounded-md  border mb-3 max-width-400">
+                <i class="fa-regular fa-user text-gray-500"></i>
+                <input id="phone" name="phone" required placeholder="Phone Number" class="h-full px-2 text-sm flex-1" value={{userprof.phone}}>
+            </div>
+            <label class="text-xs" for="country">Country</label>
+            <select class="bg-white h-10 flex w-full items-center px-3 rounded-md  border mb-3 max-width-400" name="country" value={{userprof.country}} id="country">
+                <option class="bg-white" value="Nigeria">Nigeria</option>
+            </select>
+            <label class="text-xs" for="city">City</label>
+            <select class="bg-white h-10 flex w-full items-center px-3 rounded-md  border mb-3 max-width-400" name="state" value={{userprof.city}} id="city">
+                <option class="bg-white" value="Abuja">Abuja</option>
+                <option class="bg-white" value="Kaduna">Kaduna</option>
+                <option class="bg-white" value="Lagos">Lagos</option>
+            </select>
+            <!-- wallet -->
+            <label class="text-xs" for="wallet">Wallet Address</label>
+            <div class="bg-white h-10 flex items-center px-3 rounded-md  border mb-3 max-width-400">
+                <i class="fa-sharp fa-solid fa-address-book text-gray-500"></i>
+                <input type="hidden" required placeholder="Wallet Address" id="wallet" class="h-full px-2 text-sm flex-1">
+            </div>
+            <!-- Pin -->
+            <label class="text-xs" for="pin">WithDrawal Pin</label>
+            <div class="bg-white h-10 flex items-center px-3 rounded-md  border mb-3 max-width-400">
+                <i class="fa-sharp fa-solid fa-shield-halved text-gray-500"></i>
+                <input id="pin" name="withdraw" required placeholder="WithDrawal Pin " class="h-full px-2 text-sm flex-1">
+            </div>
+            <div class="flex">
+                <button class="px-5  h-8 text-brand bg-green-100 rounded-md mr-3">Update Profile</button>
+                <a href="{% url 'profile' %}" ><p class="px-5 h-8 pt-1 text-red-800 bg-red-100 rounded-md mr-3">Cancel</p></a>
+            </div>
+        </form>
+        {% endblock content %}

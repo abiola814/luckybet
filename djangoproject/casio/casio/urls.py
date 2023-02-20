@@ -24,9 +24,18 @@ urlpatterns = [
     path("login/",views.login_view,name="login"),
    # path("fund/",views.fund,name="fund"),
     path("profile/",views.profile,name="profile"),
-     path("draw/",views.draw,name="draw"),
-       path("logout/",views.logout_view,name="logout"),
-       path("fund/",include('payment.urls')),
-        path("bet/",include('bet.urls'))
+    path("editprofile/",views.editprofile,name="editprofile"),
+    path("draw/",views.draw,name="draw"),
+    path("withdraw/",views.withdraw,name="withdraw"),
+    path("transaction/",views.transaction,name="transaction"),
+    path("notification/",views.notice,name="notice"),
+    path("game/",views.game,name="game"),
+    path("play/",views.play,name="play"),
+    path("changepassword/",views.password,name="password"),
+    path("changemail/",views.mail,name="mail"),
+    path("settings/",views.setting,name="setting"),
+    path("logout/",views.logout_view,name="logout"),
+    path("fund/",include('payment.urls')),
+    path("bet/",include('bet.urls'))
 
 ]
